@@ -1,5 +1,7 @@
 package net.coolspookystuff.witchessabbath;
 
+
+import net.coolspookystuff.witchessabbath.block.RowanSaplingBlock;
 import net.coolspookystuff.witchessabbath.block.WitchesOvenBlock;
 import net.coolspookystuff.witchessabbath.block.entity.WitchesOvenBlockEntity;
 import net.fabricmc.api.ModInitializer;
@@ -28,6 +30,8 @@ public class WitchesSabbath implements ModInitializer {
     public static final Block ROWAN_LOG = new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
     public static final WitchesOvenBlock WITCHES_OVEN = new WitchesOvenBlock();
     public static final LeavesBlock ROWAN_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
+    public static final RowanSaplingBlock ROWAN_SAPLING = new RowanSaplingBlock(null);
+
 	    
     public static BlockEntityType<WitchesOvenBlockEntity> WITCHES_OVEN_BLOCK_ENTITY;
         

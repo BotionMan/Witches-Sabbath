@@ -6,7 +6,6 @@ import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.Material;
-import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
@@ -15,7 +14,7 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.world.BlockView;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 
-public class WitchesOvenBlock extends Block implements Waterloggable {
+public class WitchesOvenBlock extends Block {
 	   public static final DirectionProperty FACING;
 	   
 	    public WitchesOvenBlock() {
