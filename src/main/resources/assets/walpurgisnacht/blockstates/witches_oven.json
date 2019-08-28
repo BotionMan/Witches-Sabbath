@@ -1,0 +1,9 @@
+    {
+      "variants": {
+        "facing=north": { "model": "walpurgisnacht:block/witches_oven" },
+        "facing=south": { "model": "walpurgisnacht:block/witches_oven", "y": 180 },
+        "facing=west":  { "model": "walpurgisnacht:block/witches_oven", "y": 270 },
+        "facing=east":  { "model": "walpurgisnacht:block/witches_oven", "y": 90 }
+      }
+    }
+

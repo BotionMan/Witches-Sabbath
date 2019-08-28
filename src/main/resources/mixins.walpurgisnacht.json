@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "net.coolspookystuff.witchessabbath.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "client": [
+    "WalpurgisnachtMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
