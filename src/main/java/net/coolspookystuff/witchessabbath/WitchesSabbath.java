@@ -2,6 +2,7 @@ package net.coolspookystuff.witchessabbath;
 
 
 import net.coolspookystuff.witchessabbath.block.RowanSaplingBlock;
+import net.coolspookystuff.witchessabbath.block.WitchesCauldronBlock;
 import net.coolspookystuff.witchessabbath.block.WitchesOvenBlock;
 import net.coolspookystuff.witchessabbath.block.entity.WitchesOvenBlockEntity;
 import net.fabricmc.api.ModInitializer;
@@ -31,6 +32,7 @@ public class WitchesSabbath implements ModInitializer {
     public static final WitchesOvenBlock WITCHES_OVEN = new WitchesOvenBlock();
     public static final LeavesBlock ROWAN_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
     public static final RowanSaplingBlock ROWAN_SAPLING = new RowanSaplingBlock(null);
+    public static final WitchesCauldronBlock WITCHES_CAULDRON = new WitchesCauldronBlock();
 
 	    
     public static BlockEntityType<WitchesOvenBlockEntity> WITCHES_OVEN_BLOCK_ENTITY;
@@ -48,11 +50,13 @@ public class WitchesSabbath implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_log"), new BlockItem(ROWAN_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_oven"), new BlockItem(WITCHES_OVEN, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_leaves"), new BlockItem(ROWAN_LEAVES, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_cauldron"), new BlockItem(WITCHES_CAULDRON, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
 
         
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "witches_oven"), WITCHES_OVEN);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_log"), ROWAN_LOG);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_leaves"), ROWAN_LEAVES);
+        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "witches_cauldron"), WITCHES_CAULDRON);
 
         WITCHES_OVEN_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY, "witchessabbath:witchesoven", BlockEntityType.Builder.create(WitchesOvenBlockEntity::new, WITCHES_OVEN).build(null));	
 	}

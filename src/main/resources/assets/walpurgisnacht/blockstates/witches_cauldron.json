@@ -1,5 +1,9 @@
     {
       "variants": {
-        "": { "model": "walpurgisnacht:block/rowan_leaves" }
+        "facing=north": { "model": "walpurgisnacht:block/witches_cauldron" },
+        "facing=south": { "model": "walpurgisnacht:block/witches_cauldron", "y": 180 },
+        "facing=west":  { "model": "walpurgisnacht:block/witches_cauldron", "y": 270 },
+        "facing=east":  { "model": "walpurgisnacht:block/witches_cauldron", "y": 90 }
       }
-    }	
+    }
+
