@@ -1,9 +1,21 @@
     {
       "variants": {
-        "facing=north": { "model": "walpurgisnacht:block/witches_cauldron" },
-        "facing=south": { "model": "walpurgisnacht:block/witches_cauldron", "y": 180 },
-        "facing=west":  { "model": "walpurgisnacht:block/witches_cauldron", "y": 270 },
-        "facing=east":  { "model": "walpurgisnacht:block/witches_cauldron", "y": 90 }
+        "facing=north,level=0": { "model": "walpurgisnacht:block/witches_cauldron" },
+        "facing=south,level=0": { "model": "walpurgisnacht:block/witches_cauldron", "y": 180 },
+        "facing=west,level=0":  { "model": "walpurgisnacht:block/witches_cauldron", "y": 270 },
+        "facing=east,level=0":  { "model": "walpurgisnacht:block/witches_cauldron", "y": 90 },
+        "facing=north,level=1": { "model": "walpurgisnacht:block/witches_cauldron_smolfull" },
+        "facing=south,level=1": { "model": "walpurgisnacht:block/witches_cauldron_smolfull", "y": 180 },
+        "facing=west,level=1":  { "model": "walpurgisnacht:block/witches_cauldron_smolfull", "y": 270 },
+        "facing=east,level=1":  { "model": "walpurgisnacht:block/witches_cauldron_smolfull", "y": 90 },
+        "facing=north,level=2": { "model": "walpurgisnacht:block/witches_cauldron_medfull" },
+        "facing=south,level=2": { "model": "walpurgisnacht:block/witches_cauldron_medfull", "y": 180 },
+        "facing=west,level=2":  { "model": "walpurgisnacht:block/witches_cauldron_medfull", "y": 270 },
+        "facing=east,level=2":  { "model": "walpurgisnacht:block/witches_cauldron_medfull", "y": 90 },
+        "facing=north,level=3": { "model": "walpurgisnacht:block/witches_cauldron_bigfull" },
+        "facing=south,level=3": { "model": "walpurgisnacht:block/witches_cauldron_bigfull", "y": 180 },
+        "facing=west,level=3":  { "model": "walpurgisnacht:block/witches_cauldron_bigfull", "y": 270 },
+        "facing=east,level=3":  { "model": "walpurgisnacht:block/witches_cauldron_bigfull", "y": 90 }        
       }
     }
 
