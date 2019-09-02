@@ -1,18 +1,26 @@
 package net.coolspookystuff.witchessabbath.block;
 
+import net.coolspookystuff.witchessabbath.WitchesSabbath;
+import net.coolspookystuff.witchessabbath.block.entity.WitchesCauldronBlockEntity;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPlacementEnvironment;
 import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.Material;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.pattern.BlockPattern;
+import net.minecraft.block.pattern.BlockPatternBuilder;
+import net.minecraft.block.pattern.CachedBlockPosition;
 import net.minecraft.entity.EntityContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -28,10 +36,12 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class WitchesCauldronBlock extends Block {
+public class WitchesCauldronBlock extends Block  {
 	   public static final DirectionProperty FACING;  
 	   protected static final VoxelShape BOUNDING_SHAPE = Block.createCuboidShape(2.0D, 2.0D, 2.0D, 14.0D, 12.0D, 14.0D);
 	   public static final IntProperty LEVEL;
+	   public  final int testint2 = WitchesCauldronBlockEntity.testint;
+	   private static BlockPattern cauldronBubblePattern;
 
 	   public WitchesCauldronBlock() {
 		   super(FabricBlockSettings.of(Material.METAL).strength(1.0f, 1.0f).sounds(BlockSoundGroup.METAL).build());
@@ -99,11 +109,24 @@ public class WitchesCauldronBlock extends Block {
 		   }
 	   @Override
 	   public boolean canPlaceAtSide(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, BlockPlacementEnvironment blockPlacementEnvironment_1) {
-		      return false;
+		   return false;
+	   }
+	   public BlockEntity createBlockEntity(BlockView blockView) {
+	      return new WitchesCauldronBlockEntity();
+	   }
+		
+	   public BlockPattern cauldronBubblePattern() {
+		   return BlockPatternBuilder.start()
+				   .aisle("c", "f")
+				   .where('c', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(WitchesSabbath.WITCHES_CAULDRON)))
+				   .where('c', CachedBlockPosition.matchesBlockState(BlockStatePredicate.forBlock(Blocks.FIRE)))
+				   .build();
+		   
 	   }
 	   static {
 		   LEVEL = Properties.LEVEL_3;
 		   FACING = HorizontalFacingBlock.FACING;
 
 	}
+	
 }

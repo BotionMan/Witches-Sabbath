@@ -1,5 +1,7 @@
     {
       "variants": {
-        "": { "model": "walpurgisnacht:block/rowan_log" }
-      }
-    }	
+    	"axis=y":  { "model": "walpurgisnacht:block/rowan_log" },
+        "axis=z":   { "model": "walpurgisnacht:block/rowan_log", "x": 90 },
+        "axis=x":   { "model": "walpurgisnacht:block/rowan_log", "x": 90, "y": 90 }       	
+	}
+}	
