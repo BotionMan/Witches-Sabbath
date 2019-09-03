@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_inventory",
+    "textures": {
+        "texture": "walpurgisnacht:block/rowan_planks"
+    }
+}
