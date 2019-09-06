@@ -1,0 +1,8 @@
+    {
+        "wose_idle": { "category": "walpurgisnacht", "sounds": ["walpurgisnacht:wose_idle"], "subtitle": "TODO" },
+		"wose_die": { "category": "walpurgisnacht", "sounds": ["walpurgisnacht:wose_die"], "subtitle": "TODO" },
+		"wose_attack": { "category": "walpurgisnacht", "sounds": ["walpurgisnacht:wose_attack"], "subtitle": "TODO" },
+		"wose_hit": { "category": "walpurgisnacht", "sounds": ["walpurgisnacht:wose_hit"], "subtitle": "TODO" }
+
+	}
+

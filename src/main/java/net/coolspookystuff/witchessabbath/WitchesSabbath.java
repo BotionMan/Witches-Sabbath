@@ -8,7 +8,9 @@ import net.coolspookystuff.witchessabbath.block.WitchesCauldronBlock;
 import net.coolspookystuff.witchessabbath.block.WitchesOvenBlock;
 import net.coolspookystuff.witchessabbath.block.entity.WitchesCauldronBlockEntity;
 import net.coolspookystuff.witchessabbath.block.entity.WitchesOvenBlockEntity;
+import net.coolspookystuff.witchessabbath.entity.mob.WoseEntity;
 import net.coolspookystuff.witchessabbath.item.SilverSwordItem;
+import net.coolspookystuff.witchessabbath.sound.WalpurgisnachtSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
 import net.minecraft.block.FenceBlock;
@@ -17,15 +19,20 @@ import net.minecraft.block.LogBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.EntityCategory;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.registry.*;
 
 public class WitchesSabbath implements ModInitializer {
@@ -33,6 +40,12 @@ public class WitchesSabbath implements ModInitializer {
 	public static final ItemGroup WITCHES_SABBATH = FabricItemGroupBuilder.build(
 			new Identifier("walpurgisnacht", "main"),
 			() -> new ItemStack(WitchesSabbath.MANDRAKE_ROOT));
+    public static final EntityType<WoseEntity> WOSE =
+            Registry.register(
+                Registry.ENTITY_TYPE,
+                new Identifier("walpurgisnacht", "wose"),
+                FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, WoseEntity::new).size(EntityDimensions.fixed(1, 6)).build()
+            );
 	
     public static final Item MANDRAKE_ROOT = new Item(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
     public static final Item MANDRAKE_SEEDS = new Item(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
@@ -54,6 +67,15 @@ public class WitchesSabbath implements ModInitializer {
     
     public static BlockEntityType<WitchesCauldronBlockEntity> WITCHES_CAULDRON_BLOCK_ENTITY;
     public static BlockEntityType<WitchesOvenBlockEntity> WITCHES_OVEN_BLOCK_ENTITY;
+    
+    public static final Identifier 	WALPURGISNACHT_SOUND_1 = new Identifier("walpurgisnacht:wose_attack");
+    public static SoundEvent WOSE_ATTACK = new SoundEvent(WALPURGISNACHT_SOUND_1);    
+    public static final Identifier 	WALPURGISNACHT_SOUND_2 = new Identifier("walpurgisnacht:wose_die");
+    public static SoundEvent WOSE_DIE = new SoundEvent(WALPURGISNACHT_SOUND_2);    
+    public static final Identifier 	WALPURGISNACHT_SOUND_3 = new Identifier("walpurgisnacht:wose_hit");
+    public static SoundEvent WOSE_HIT = new SoundEvent(WALPURGISNACHT_SOUND_3);   
+    public static final Identifier 	WALPURGISNACHT_SOUND_4 = new Identifier("walpurgisnacht:wose_idle");
+    public static SoundEvent WOSE_IDLE = new SoundEvent(WALPURGISNACHT_SOUND_4);
         
 	@Override
 	public void onInitialize() {
@@ -88,6 +110,11 @@ public class WitchesSabbath implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "mandrake_roots"), MANDRAKE_ROOTS);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_planks"), ROWAN_PLANKS);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_fence"), ROWAN_FENCE);
+        
+        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_1, WOSE_ATTACK);
+        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_2, WOSE_DIE);
+        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_3, WOSE_HIT);
+        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_4, WOSE_IDLE);
 
 
         
