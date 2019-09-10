@@ -23,6 +23,11 @@ public class WitchesSabbathClient implements ClientModInitializer {
             BlockColorProvider provider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
             return provider == null ? -1 : provider.getColor(block, pos, world, layer);
         },
-        WitchesSabbath.ROWAN_LEAVES);
-    }
+    	WitchesSabbath.ROWAN_LEAVES);
+    	ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
+    		BlockColorProvider provider = ColorProviderRegistry.BLOCK.get(Blocks.GRASS);
+    		return provider == null ? -1 : provider.getColor(block, pos, world, layer);
+    	},
+	    WitchesSabbath.ALDER_LEAVES);
+    }	
 }

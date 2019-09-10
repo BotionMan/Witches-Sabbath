@@ -40,19 +40,16 @@ public class MandrakeEntityModel<T extends Entity> extends EntityModel<MandrakeE
 
                 legr = new Cuboid(this);
                 legr.setRotationPoint(0.0F, 0.0F, 0.0F);
-                setRotationAngle(legr, 0.0F, 0.3491F, 0.0F);
                 Body.addChild(legr);
                 legr.addBox("           legr", -3.25F, -2.0F, -7.75F, 3, 2, 5, 0.0F, 23, 0);
 
                 legl = new Cuboid(this);
                 legl.setRotationPoint(0.0F, 0.0F, 0.0F);
-                setRotationAngle(legl, 0.0F, -0.3491F, 0.0F);
                 Body.addChild(legl);
                 legl.addBox("           legl", 0.25F, -2.0F, -7.75F, 3, 2, 5, 0.0F, 17, 19);
 
                 leaf = new Cuboid(this);
                 leaf.setRotationPoint(0.0F, 0.0F, 0.0F);
-                setRotationAngle(leaf, 0.0F, 0.0F, -0.2618F);
                 Body.addChild(leaf);
                 leaf.addBox("           leaf", 2.0F, -19.0F, 1.0F, 1, 7, 0, 0.0F, 2, 0);
                 leaf.addBox("           leaf", 0.0F, -16.0F, 1.0F, 2, 1, 0, 0.0F, 17, 20);
@@ -60,7 +57,6 @@ public class MandrakeEntityModel<T extends Entity> extends EntityModel<MandrakeE
 
                 leaf2 = new Cuboid(this);
                 leaf2.setRotationPoint(0.0F, 0.0F, 0.0F);
-                setRotationAngle(leaf2, 0.0F, 0.0F, 0.2618F);
                 Body.addChild(leaf2);
                 leaf2.addBox("          leaf2", -3.0F, -19.0F, 1.0F, 1, 7, 0, 0.0F, 0, 0);
                 leaf2.addBox("          leaf2", -5.0F, -16.0F, 1.0F, 2, 1, 0, 0.0F, 17, 19);

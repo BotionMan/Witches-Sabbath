@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "walpurgisnacht:block/alder_leaves_item"
+    }
+}

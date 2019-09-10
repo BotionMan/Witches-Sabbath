@@ -21,31 +21,34 @@ import net.minecraft.world.ModifiableWorld;
 import net.minecraft.world.gen.feature.AbstractTreeFeature;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
-public class RowanTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig> {
+public class AlderTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig> {
 	   private static final BlockState LOG;
+	   private static final BlockState WOSE_LOG;
 	   private static final BlockState LEAVES;
 
 	   private final int minHeight	;	   
 	   private final boolean hasVinesAndCocoa;
 	   private final BlockState log;
+	   private final BlockState woseLog;
 	   private final BlockState leaves;
 
-	   public RowanTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1, boolean boolean_1) {
-	      this(function_1, boolean_1, 4, LOG, LEAVES, false);
+	   public AlderTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function_1, boolean boolean_1) {
+	      this(function_1, boolean_1, 4, LOG, WOSE_LOG, LEAVES, false);
 	   }
 
-	   public RowanTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function, boolean worldGen, int minHeight, BlockState log, BlockState leaves, boolean hasVinesCocoa) {
+	   public AlderTreeFeature(Function<Dynamic<?>, ? extends DefaultFeatureConfig> function, boolean worldGen, int minHeight, BlockState log, BlockState woseLog, BlockState leaves, boolean hasVinesCocoa) {
 	      super(function, worldGen);
 	      this.minHeight = minHeight;
+	      this.woseLog = woseLog;
 	      this.log = log;
 	      this.leaves = leaves;
 	      this.hasVinesAndCocoa = hasVinesCocoa;
 	   }
 
 	   public boolean generate(Set<BlockPos> set_1, ModifiableTestableWorld world, Random random, BlockPos blockPos_1, MutableIntBoundingBox box) {
-		  int height = random.nextInt(5) + minHeight;
+		  int height = random.nextInt(8) + minHeight;
 	      boolean grows = true;
-	      if (blockPos_1.getY() >= 1 && blockPos_1.getY() + height + 1 <= 256) {
+	      if (blockPos_1.getY() >= 1 && blockPos_1.getY() + height + 1 + 1 <= 256) {
 	         int int_9;
 	         int int_18;
 	         for(int int_2 = blockPos_1.getY(); int_2 <= blockPos_1.getY() + 1 + height; ++int_2) {
@@ -54,7 +57,7 @@ public class RowanTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig> 
 	               int_3 = 0;
 	            }
 
-	            if (int_2 >= blockPos_1.getY() + 1 + height - 2) {
+	            if (int_2 >= blockPos_1.getY() + 1 + height + 1 - 2) {
 	               int_3 = 2;
 	            }
 
@@ -104,6 +107,7 @@ public class RowanTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig> 
 	            for(int_21 = 0; int_21 < height; ++int_21) {
 	               if (isAirOrLeaves(world, blockPos_1.up(int_21)) || isReplaceablePlant(world, blockPos_1.up(int_21))) {
 	                  this.setBlockState(set_1, world, blockPos_1.up(int_21), this.log, box);
+	                  this.setBlockState(set_1, world, blockPos_1, this.woseLog, box);
 	                  if (this.hasVinesAndCocoa && int_21 > 0) {
 	                     if (random.nextInt(3) > 0 && isAir(world, blockPos_1.add(-1, int_21, 0))) {
 	                        this.makeVine(world, blockPos_1.add(-1, int_21, 0), VineBlock.EAST);
@@ -206,7 +210,8 @@ public class RowanTreeFeature extends AbstractTreeFeature<DefaultFeatureConfig> 
 	   }
 
 	   static {
-	      LOG = WitchesSabbath.ROWAN_LOG.getDefaultState();
-	      LEAVES = WitchesSabbath.ROWAN_LEAVES.getDefaultState();
+	      LOG = WitchesSabbath.ALDER_LOG.getDefaultState();
+	      WOSE_LOG = WitchesSabbath.ALDER_TREE_LOG.getDefaultState();
+	      LEAVES = WitchesSabbath.ALDER_LEAVES.getDefaultState();
 	   }
 	}

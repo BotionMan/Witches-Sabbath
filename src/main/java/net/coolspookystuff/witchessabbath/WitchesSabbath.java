@@ -1,10 +1,9 @@
 package net.coolspookystuff.witchessabbath;
 
 
-import net.coolspookystuff.witchessabbath.block.ElderTreeLog;
+import net.coolspookystuff.witchessabbath.block.AlderTreeLog;
 import net.coolspookystuff.witchessabbath.block.MagicSaplingBlock;
 import net.coolspookystuff.witchessabbath.block.MandrakeRootsBlock;
-import net.coolspookystuff.witchessabbath.block.RowanSaplingBlock;
 import net.coolspookystuff.witchessabbath.block.WitchesCauldronBlock;
 import net.coolspookystuff.witchessabbath.block.WitchesOvenBlock;
 import net.coolspookystuff.witchessabbath.block.entity.WitchesCauldronBlockEntity;
@@ -13,7 +12,7 @@ import net.coolspookystuff.witchessabbath.entity.mob.MandrakeEntity;
 import net.coolspookystuff.witchessabbath.entity.mob.WoseEntity;
 import net.coolspookystuff.witchessabbath.entity.thrown.premade.WebBrewEntity;
 import net.coolspookystuff.witchessabbath.item.SilverSwordItem;
-import net.coolspookystuff.witchessabbath.sound.WalpurgisnachtSoundEvents;
+import net.coolspookystuff.witchessabbath.world.feature.AlderTreeFeature;
 import net.coolspookystuff.witchessabbath.world.feature.RowanTreeFeature;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.block.Block;
@@ -39,7 +38,6 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.registry.*;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.OakTreeFeature;
 
 public class WitchesSabbath implements ModInitializer {
 
@@ -50,13 +48,13 @@ public class WitchesSabbath implements ModInitializer {
     		Registry.register(
     				Registry.ENTITY_TYPE,
     				new Identifier("walpurgisnacht", "wose"),
-    				FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, WoseEntity::new).size(EntityDimensions.fixed(0.7f, 0.7f)).build()
+    				FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, WoseEntity::new).size(EntityDimensions.fixed(1, 6)).build()
     				);
     public static final EntityType<MandrakeEntity> MANDRAKE =
     		Registry.register(
     				Registry.ENTITY_TYPE,
     				new Identifier("walpurgisnacht", "mandrake"),
-    				FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, MandrakeEntity::new).size(EntityDimensions.fixed(1, 6)).build()
+    				FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, MandrakeEntity::new).size(EntityDimensions.fixed(0.7f, 0.7f)).build()
     				);
     public static final EntityType<WebBrewEntity> WEB_BREW =
     		Registry.register(
@@ -70,12 +68,14 @@ public class WitchesSabbath implements ModInitializer {
     public static final SilverSwordItem SILVER_SWORD = new SilverSwordItem(ToolMaterials.IRON, 3, -2.8f);
     
     public static final LogBlock ROWAN_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
+    public static final LeavesBlock ALDER_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
     public static final LeavesBlock ROWAN_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
     public static final Block ROWAN_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
     public static final FenceBlock ROWAN_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
-    public static final ElderTreeLog ELDER_TREE_LOG = new ElderTreeLog(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
-    public static final LogBlock ELDER_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
-	public static final Block ROWAN_SAPLING = new MagicSaplingBlock(new MagicSaplingGenerator(() -> new RowanTreeFeature(DefaultFeatureConfig::deserialize, true))); 
+    public static final AlderTreeLog ALDER_TREE_LOG = new AlderTreeLog(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
+    public static final LogBlock ALDER_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
+	public static final Block ALDER_SAPLING = new MagicSaplingBlock(new MagicSaplingGenerator(() -> new AlderTreeFeature(DefaultFeatureConfig::deserialize, true))); 
+    public static final Block ROWAN_SAPLING = new MagicSaplingBlock(new MagicSaplingGenerator(() -> new RowanTreeFeature(DefaultFeatureConfig::deserialize, true))); 
 	public static final WitchesOvenBlock WITCHES_OVEN = new WitchesOvenBlock();
     public static final WitchesCauldronBlock WITCHES_CAULDRON = new WitchesCauldronBlock();
     public static final MandrakeRootsBlock MANDRAKE_ROOTS = new MandrakeRootsBlock();
@@ -106,22 +106,27 @@ public class WitchesSabbath implements ModInitializer {
         
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mandrake_seeds"), new BlockItem(MANDRAKE_ROOTS, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_log"), new BlockItem(ROWAN_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "elder_log"), new BlockItem(ELDER_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "elder_log"), new BlockItem(ALDER_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_planks"), new BlockItem(ROWAN_PLANKS, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_leaves"), new BlockItem(ALDER_LEAVES, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));        
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_leaves"), new BlockItem(ROWAN_LEAVES, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));        
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_cauldron"), new BlockItem(WITCHES_CAULDRON, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_oven"), new BlockItem(WITCHES_OVEN, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_fence"), new BlockItem(ROWAN_FENCE, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_sapling"), new BlockItem(ROWAN_SAPLING, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_sapling"), new BlockItem(ALDER_SAPLING, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
 
 
         
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "witches_oven"), WITCHES_OVEN);
-        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_log"), ROWAN_LOG);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_sapling"), ROWAN_SAPLING);
+        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "alder_sapling"), ALDER_SAPLING);
 
-        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "elder_log"), ELDER_LOG);
-        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "elder_tree_log"), ELDER_TREE_LOG);
+
+        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_log"), ROWAN_LOG);
+        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "alder_leaves"), ALDER_LEAVES);
+        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "alder_log"), ALDER_LOG);
+        Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "alder_tree_log"), ALDER_TREE_LOG);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_leaves"), ROWAN_LEAVES);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "witches_cauldron"), WITCHES_CAULDRON);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "mandrake_roots"), MANDRAKE_ROOTS);

@@ -8,6 +8,7 @@
     "#minecraft:jungle_logs",
     "#minecraft:spruce_logs",
 
-    "#walpurgisnacht:rowan_logs"
+    "#walpurgisnacht:rowan_logs",
+    "#walpurgisnacht:alder_logs"
   ]
 }

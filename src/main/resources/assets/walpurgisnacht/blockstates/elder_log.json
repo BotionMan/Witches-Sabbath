@@ -1,7 +1,0 @@
-    {
-      "variants": {
-    	"axis=y":  { "model": "walpurgisnacht:block/elder_log" },
-        "axis=z":   { "model": "walpurgisnacht:block/elder_log", "x": 90 },
-        "axis=x":   { "model": "walpurgisnacht:block/elder_log", "x": 90, "y": 90 }       	
-	}
-}	
