@@ -15,10 +15,9 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
-import net.coolspookystuff.witchessabbath.block.entity.WitchesOvenBlockEntity;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
 
-public class WitchesOvenBlock extends BlockWithEntity {
+public class WitchesOvenBlock extends Block {
 	   public static final DirectionProperty FACING;
 	   protected static final VoxelShape BOUNDING_SHAPE = Block.createCuboidShape(2.0D, 3.0D, 2.0D, 14.0D, 15.0D, 14.0D);
 	   
@@ -40,9 +39,6 @@ public class WitchesOvenBlock extends BlockWithEntity {
 	   public void appendProperties(StateFactory.Builder<Block, BlockState> stateFactory$Builder_1) {
 		      stateFactory$Builder_1.add(FACING);
 	   }
-	   public BlockEntity createBlockEntity(BlockView blockView) {
-	      return new WitchesOvenBlockEntity();
-	   } 
 	   static {
 		      FACING = HorizontalFacingBlock.FACING;	
 	}

@@ -6,7 +6,7 @@
 		"2": "walpurgisnacht:block/witches_cauldron_belly_south",
 		"3": "walpurgisnacht:block/witches_cauldron_belly_west",
 		"5": "walpurgisnacht:block/witches_cauldron_generic",
-		"particle": "walpurgisnacht:block/witches_cauldron_belly_north"
+		"particle": "walpurgisnacht:block/witches_cauldron_generic"
 	},
 	"elements": [
 		{

@@ -8,7 +8,7 @@ import net.minecraft.client.model.Cuboid;
 
 
 
-public class WoseEntityModel<T extends Entity> extends EntityModel<WoseEntity> {
+public class WoseEntityModel<T extends Entity> extends EntityModel	<WoseEntity> {
         private final Cuboid bone;
         private final Cuboid footl;
         private final Cuboid footr;
@@ -86,6 +86,27 @@ public class WoseEntityModel<T extends Entity> extends EntityModel<WoseEntity> {
         	
         	
         }
+        public void woseAttackArmChange(WoseEntity woseEntity, float float_1, float float_2, float float_3) {
+            int int_1 = woseEntity.ii();
+            if (int_1 > 0) {
+                this.bodyl.pitch = -2.0F + 1.5F * this.wosearmfloat((float)int_1 - float_3, 10.0F);
+                this.bodyr.pitch = -2.0F + 1.5F * this.wosearmfloat((float)int_1 - float_3, 10.0F);
+             } else {
+                int int_2 = woseEntity.aa();
+                if (int_2 > 0) {
+                   this.bodyl.pitch = -0.8F + 0.025F * this.wosearmfloat((float)int_2, 70.0F);
+                   this.bodyr.pitch = 0.0F;
+                } else {
+                   this.bodyl.pitch = (-0.2F + 1.5F * this.wosearmfloat(float_1, 13.0F)) * float_2;
+                   this.bodyr.pitch = (-0.2F - 1.5F * this.wosearmfloat(float_1, 13.0F)) * float_2;
+                }
+            	
+            }
+        }
+        private float wosearmfloat(float float_1, float float_2) {
+        	return (Math.abs(float_1 % float_2 - float_2 * 0.5F) - float_2 * 0.25F) / (float_2 * 0.25F);
+        }
+        
         public void setRotationAngle(Cuboid modelRenderer, float x, float y, float z) {
         modelRenderer.rotationPointX = x;
         modelRenderer.rotationPointY = y;
