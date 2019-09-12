@@ -1,0 +1,6 @@
+{
+    "parent": "block/crop",
+    "textures": {
+        "crop": "walpurgisnacht:block/mandrake_3"
+    }
+}
