@@ -12,6 +12,7 @@ import net.coolspookystuff.witchessabbath.entity.mob.MandrakeEntity;
 import net.coolspookystuff.witchessabbath.entity.mob.WoseEntity;
 import net.coolspookystuff.witchessabbath.entity.thrown.premade.WebBrewEntity;
 import net.coolspookystuff.witchessabbath.item.SilverSwordItem;
+import net.coolspookystuff.witchessabbath.item.WebBrewItem;
 import net.coolspookystuff.witchessabbath.world.feature.AlderTreeFeature;
 import net.coolspookystuff.witchessabbath.world.feature.RowanTreeFeature;
 import net.fabricmc.api.ModInitializer;
@@ -56,15 +57,17 @@ public class WitchesSabbath implements ModInitializer {
     				new Identifier("walpurgisnacht", "mandrake"),
     				FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, MandrakeEntity::new).size(EntityDimensions.fixed(0.7f, 0.7f)).build()
     				);
-    public static final EntityType<WebBrewEntity> WEB_BREW =
+    public static final EntityType<WebBrewEntity> WEB_BREW_ENTITY =
     		Registry.register(
     				Registry.ENTITY_TYPE,
     				new Identifier("walpurgisnacht", "webbrew"),
-    				FabricEntityTypeBuilder.create(EntityCategory.MISC, WebBrewEntity::new).size(EntityDimensions.fixed(1, 1)).build()
+    				FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, WebBrewEntity::new).size(EntityDimensions.fixed(1, 1)).build()
     				);
     
     public static final Item MANDRAKE_ROOT = new Item(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
     public static final Item MANDRAKE_SEEDS = new Item(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
+    public static final WebBrewItem WEB_BREW = new WebBrewItem(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
+
     public static final SilverSwordItem SILVER_SWORD = new SilverSwordItem(ToolMaterials.IRON, 3, -2.8f);
     
     public static final LogBlock ROWAN_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
@@ -103,6 +106,7 @@ public class WitchesSabbath implements ModInitializer {
         
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mandrake_root"), MANDRAKE_ROOT);
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "silver_sword"), SILVER_SWORD);
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "web_brew"), WEB_BREW);
         
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mandrake_seeds"), new BlockItem(MANDRAKE_ROOTS, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_log"), new BlockItem(ROWAN_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
@@ -115,7 +119,6 @@ public class WitchesSabbath implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_fence"), new BlockItem(ROWAN_FENCE, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_sapling"), new BlockItem(ROWAN_SAPLING, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_sapling"), new BlockItem(ALDER_SAPLING, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-
 
         
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "witches_oven"), WITCHES_OVEN);

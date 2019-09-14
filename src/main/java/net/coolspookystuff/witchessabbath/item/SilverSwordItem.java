@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 
-public class SilverSwordItem extends SwordItem {;
+public class SilverSwordItem extends SwordItem {
 private final float attackSpeed;
 private final float attackDamage;
 public SilverSwordItem(ToolMaterial material, int damage, float speed) {
