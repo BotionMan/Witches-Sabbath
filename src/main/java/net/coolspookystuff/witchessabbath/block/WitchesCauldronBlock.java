@@ -44,7 +44,7 @@ public class WitchesCauldronBlock extends Block  {
 	   private static BlockPattern cauldronBubblePattern;
 
 	   public WitchesCauldronBlock() {
-		   super(FabricBlockSettings.of(Material.METAL).strength(1.0f, 1.0f).sounds(BlockSoundGroup.METAL).build());
+		   super(FabricBlockSettings.of(Material.PART).strength(0.5f, 0.5f).sounds(BlockSoundGroup.LANTERN).build());
 		   this.setDefaultState((BlockState)((BlockState)this.stateFactory.getDefaultState()).with(LEVEL, 0));
 	   }	        
 	   public WitchesCauldronBlock(Block.Settings block$Settings_1) {

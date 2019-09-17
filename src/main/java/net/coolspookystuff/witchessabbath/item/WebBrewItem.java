@@ -19,9 +19,8 @@ public class WebBrewItem extends Item{
 
 
 
-	   public WebBrewItem(Settings item$Settings_1) {
+	public WebBrewItem(Settings item$Settings_1) {
 		super(item$Settings_1);
-		// TODO Auto-generated constructor stub
 	}
 
 	public TypedActionResult<ItemStack> use(World world_1, PlayerEntity playerEntity_1, Hand hand_1) {

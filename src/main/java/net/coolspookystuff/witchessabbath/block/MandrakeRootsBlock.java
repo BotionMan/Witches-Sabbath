@@ -3,6 +3,8 @@ package net.coolspookystuff.witchessabbath.block;
 import java.util.Random;
 
 import net.coolspookystuff.witchessabbath.WitchesSabbath;
+import net.coolspookystuff.witchessabbath.entity.mob.MandrakeEntity;
+import net.coolspookystuff.witchessabbath.entity.mob.WoseEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;
@@ -15,10 +17,17 @@ import net.minecraft.block.Material;
 import net.minecraft.block.PlantBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityContext;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.RavagerEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateFactory;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
@@ -76,15 +85,27 @@ import net.minecraft.world.World;
 		      if (world_1.getLightLevel(blockPos_1, 0) >= 9) {
 		         int int_1 = this.getAge(blockState_1);
 		         if (int_1 < this.getMaxAge()) {
-		            float float_1 = getAvailableMoisture(this, world_1, blockPos_1);
+		            float float_1 = getAvailableMoisture(this, world_1, blockPos_1);{
 		            if (random_1.nextInt((int)(25.0F / float_1) + 1) == 0) {
 		               world_1.setBlockState(blockPos_1, this.withAge(int_1 + 1), 2);
+		               }
 		            }
 		         }
 		      }
-
 		   }
 
+		   @Override
+		   public void onBlockRemoved(BlockState blockState, World world, BlockPos blockBreakPos,  BlockState blockState2, boolean boolean1) { 
+			   if(this.isMature(blockState) && world.isDaylight()){		
+				   world.playSound(null, blockBreakPos, SoundEvents.ENTITY_GHAST_HURT, SoundCategory.AMBIENT, 1f, 1.5f);		
+				   
+			   }
+		   }
+		   @Override
+		   public void onSteppedOn(World world, BlockPos blockPos, Entity entity) {
+			   world.playSound(null, blockPos, SoundEvents.ENTITY_GHAST_HURT, SoundCategory.AMBIENT, 1f, 3f);		
+
+		   }
 		   public void applyGrowth(World world_1, BlockPos blockPos_1, BlockState blockState_1) {
 		      int int_1 = this.getAge(blockState_1) + this.getGrowthAmount(world_1);
 		      int int_2 = this.getMaxAge();
