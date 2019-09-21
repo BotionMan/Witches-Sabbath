@@ -25,9 +25,10 @@ public class WoseEntity extends HostileEntity {
 	}
 	protected void initAttributes() {
 		super.initAttributes();
-		this.getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(100.0D);
-		this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
-		this.getAttributeInstance(EntityAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+		getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(100.0D);
+		getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
+		getAttributeInstance(EntityAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
+	    experiencePoints = 50;
 	}
 	protected void initGoals() {
 		goalSelector.add(1, new MeleeAttackGoal(this, 1.0D, true));

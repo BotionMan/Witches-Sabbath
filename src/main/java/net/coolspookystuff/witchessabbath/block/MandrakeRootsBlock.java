@@ -101,11 +101,7 @@ import net.minecraft.world.World;
 				   
 			   }
 		   }
-		   @Override
-		   public void onSteppedOn(World world, BlockPos blockPos, Entity entity) {
-			   world.playSound(null, blockPos, SoundEvents.ENTITY_GHAST_HURT, SoundCategory.AMBIENT, 1f, 3f);		
 
-		   }
 		   public void applyGrowth(World world_1, BlockPos blockPos_1, BlockState blockState_1) {
 		      int int_1 = this.getAge(blockState_1) + this.getGrowthAmount(world_1);
 		      int int_2 = this.getMaxAge();

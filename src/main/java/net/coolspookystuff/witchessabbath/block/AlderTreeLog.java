@@ -20,15 +20,15 @@ public class AlderTreeLog extends PillarBlock {
 	public AlderTreeLog(MaterialColor materialColor_1, Settings block$Settings_1) {
 		super(FabricBlockSettings.of(Material.WOOD).strength(1.0f, 1.0f).sounds(BlockSoundGroup.WOOD).build());
 	}
-		
-		public void onBlockBroken(BlockState blockState_1, World world, BlockPos blockBreakPos, BlockState blockState_2, boolean boolean_1) { 
-			Random treeRand = new Random();
-			Random xrand = new Random();
-			Random yrand = new Random();
-			int chance;
+	@Override
+	public void onBlockRemoved(BlockState blockState_1, World world, BlockPos blockBreakPos, BlockState blockState_2, boolean boolean_1) { 
+		Random treeRand = new Random();
+		Random xrand = new Random();
+		Random yrand = new Random();
+		int chance;
 			int randx = xrand.nextInt(20 - 10);
 			int randz = yrand.nextInt(20 - 10);
-			chance = treeRand.nextInt(1);
+			chance = treeRand.nextInt(2);
 			if(chance == 0) {
 				WoseEntity entSpawner = WitchesSabbath.WOSE.create(world);
 				entSpawner.setPositionAndAngles((double)blockBreakPos.getX() + 0.5D, (double)blockBreakPos.getY(), (double)blockBreakPos.getZ() + randx, 0.0F, randz);        
