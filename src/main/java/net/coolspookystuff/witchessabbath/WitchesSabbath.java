@@ -28,7 +28,10 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
@@ -67,11 +70,13 @@ public class WitchesSabbath implements ModInitializer {
 
     public static final Tag<Block> MUATION_TABLE_TAG = TagRegistry.block(new Identifier("walpurgisnacht", "mutation_table"));
     
-    public static final Item MANDRAKE_ROOT = new Item(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
-    public static final AlteringLiquidItem MUTANDIS_COPYKAT = new AlteringLiquidItem(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
+    public static final Item MANDRAKE_ROOT = new Item(new Item.Settings().group(WITCHES_SABBATH));
+	public static Item ROWAN_BERRIES = new Item(new Item.Settings().group(WITCHES_SABBATH).food(new FoodComponent.Builder().snack().alwaysEdible().hunger(2).build()));
+	
+    public static final AlteringLiquidItem MUTANDIS_COPYKAT = new AlteringLiquidItem(new Item.Settings().group(WITCHES_SABBATH));
 
-    public static final Item MANDRAKE_SEEDS = new Item(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
-    public static final WebBrewItem WEB_BREW = new WebBrewItem(new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH));
+    public static final Item MANDRAKE_SEEDS = new Item(new Item.Settings().group(WITCHES_SABBATH));
+    public static final WebBrewItem WEB_BREW = new WebBrewItem(new Item.Settings().group(WITCHES_SABBATH));
 
     public static final SilverSwordItem SILVER_SWORD = new SilverSwordItem(ToolMaterials.IRON, 3, -2.8f);
     
@@ -117,21 +122,24 @@ public class WitchesSabbath implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mandrake_root"), MANDRAKE_ROOT);
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "silver_sword"), SILVER_SWORD);
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "web_brew"), WEB_BREW);	
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_berries"), ROWAN_BERRIES);	
+
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mutandis_copykat"), MUTANDIS_COPYKAT);	
 
+
         
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mandrake_seeds"), new BlockItem(MANDRAKE_ROOTS, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_log"), new BlockItem(ROWAN_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_log"), new BlockItem(ALDER_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_planks"), new BlockItem(ROWAN_PLANKS, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_leaves"), new BlockItem(ALDER_LEAVES, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));        
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_leaves"), new BlockItem(ROWAN_LEAVES, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));        
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_cauldron"), new BlockItem(WITCHES_CAULDRON, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_oven"), new BlockItem(WITCHES_OVEN, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_fence"), new BlockItem(ROWAN_FENCE, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_sapling"), new BlockItem(ROWAN_SAPLING, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_sapling"), new BlockItem(ALDER_SAPLING, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_tree_log"), new BlockItem(ALDER_TREE_LOG, new Item.Settings().group(WitchesSabbath.WITCHES_SABBATH)));        
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mandrake_seeds"), new BlockItem(MANDRAKE_ROOTS, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_log"), new BlockItem(ROWAN_LOG, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_log"), new BlockItem(ALDER_LOG, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_planks"), new BlockItem(ROWAN_PLANKS, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_leaves"), new BlockItem(ALDER_LEAVES, new Item.Settings().group(WITCHES_SABBATH)));        
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_leaves"), new BlockItem(ROWAN_LEAVES, new Item.Settings().group(WITCHES_SABBATH)));        
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_cauldron"), new BlockItem(WITCHES_CAULDRON, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "witches_oven"), new BlockItem(WITCHES_OVEN, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_fence"), new BlockItem(ROWAN_FENCE, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_sapling"), new BlockItem(ROWAN_SAPLING, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_sapling"), new BlockItem(ALDER_SAPLING, new Item.Settings().group(WITCHES_SABBATH)));
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "alder_tree_log"), new BlockItem(ALDER_TREE_LOG, new Item.Settings().group(WITCHES_SABBATH)));        
 
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "witches_oven"), WITCHES_OVEN);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_sapling"), ROWAN_SAPLING);
@@ -148,10 +156,10 @@ public class WitchesSabbath implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_planks"), ROWAN_PLANKS);
         Registry.register(Registry.BLOCK, new Identifier("walpurgisnacht", "rowan_fence"), ROWAN_FENCE);
         
-        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_1, WOSE_ATTACK);
-        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_2, WOSE_DIE);
-        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_3, WOSE_HIT);
-        Registry.register(Registry.SOUND_EVENT, WitchesSabbath.WALPURGISNACHT_SOUND_4, WOSE_IDLE);
+        Registry.register(Registry.SOUND_EVENT, WALPURGISNACHT_SOUND_1, WOSE_ATTACK);
+        Registry.register(Registry.SOUND_EVENT, WALPURGISNACHT_SOUND_2, WOSE_DIE);
+        Registry.register(Registry.SOUND_EVENT, WALPURGISNACHT_SOUND_3, WOSE_HIT);
+        Registry.register(Registry.SOUND_EVENT, WALPURGISNACHT_SOUND_4, WOSE_IDLE);
 
 
         

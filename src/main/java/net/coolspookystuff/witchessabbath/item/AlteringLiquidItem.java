@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 
-public class AlteringLiquidItem<T> extends Item {
+public class AlteringLiquidItem extends Item {
 	
 	public AlteringLiquidItem(Settings item$Settings) {
 		super(item$Settings);
@@ -32,7 +32,7 @@ public class AlteringLiquidItem<T> extends Item {
 				ItemStack itemStack = itemUsageContext.getStack();
 				itemUsageContext.getWorld().setBlockState(mutPos, mutation);		
 				itemStack.decrement(1);
-				itemUsageContext.getWorld().addParticle(ParticleTypes.SMOKE, double_1, double_2, double_3, 0.0D, 0.0D, 0.0D);
+				itemUsageContext.getWorld().addParticle(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, double_1, double_2, double_3, 0.0f, 0.0f, 0.0f);
 			}
 		}
 		return ActionResult.SUCCESS;

@@ -28,7 +28,7 @@ public class WoseEntity extends HostileEntity {
 		getAttributeInstance(EntityAttributes.MAX_HEALTH).setBaseValue(100.0D);
 		getAttributeInstance(EntityAttributes.MOVEMENT_SPEED).setBaseValue(0.4D);
 		getAttributeInstance(EntityAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
-	    experiencePoints = 50;
+		getAttributeInstance(EntityAttributes.FOLLOW_RANGE).setBaseValue(50);
 	}
 	protected void initGoals() {
 		goalSelector.add(1, new MeleeAttackGoal(this, 1.0D, true));
@@ -46,7 +46,7 @@ public class WoseEntity extends HostileEntity {
 	public boolean tryAttack(Entity entity_1) {
 		boolean boolean_1 = entity_1.damage(DamageSource.mob(this), (float)(7 + this.random.nextInt(15)));
 		if (boolean_1) {
-			entity_1.setVelocity(entity_1.getVelocity().add(0.0D, 0.4000000059604645D, 0.0D));
+			entity_1.setVelocity(entity_1.getVelocity().add(0.0D, 0.4D, 0.0D));
 			this.dealDamage(this, entity_1);
 		}
 
