@@ -11,13 +11,16 @@ import net.coolspookystuff.witchessabbath.block.entity.WitchesOvenBlockEntity;
 import net.coolspookystuff.witchessabbath.block.sapling.MagicSaplingGenerator;
 import net.coolspookystuff.witchessabbath.entity.mob.MandrakeEntity;
 import net.coolspookystuff.witchessabbath.entity.mob.WoseEntity;
-import net.coolspookystuff.witchessabbath.entity.thrown.premade.WebBrewEntity;
 import net.coolspookystuff.witchessabbath.item.AlteringLiquidItem;
+import net.coolspookystuff.witchessabbath.item.HunterCrossbowItem;
 import net.coolspookystuff.witchessabbath.item.SilverSwordItem;
-import net.coolspookystuff.witchessabbath.item.WebBrewItem;
 import net.coolspookystuff.witchessabbath.world.feature.AlderTreeFeature;
 import net.coolspookystuff.witchessabbath.world.feature.RowanTreeFeature;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder;
+import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.FenceBlock;
 import net.minecraft.block.LeavesBlock;
@@ -28,23 +31,17 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.util.Identifier;
-import net.fabricmc.fabric.api.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-import net.fabricmc.fabric.api.entity.FabricEntityTypeBuilder;
-import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.Tag;
-import net.minecraft.util.registry.*;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
 public class WitchesSabbath implements ModInitializer {
@@ -64,9 +61,6 @@ public class WitchesSabbath implements ModInitializer {
     				new Identifier("walpurgisnacht", "mandrake"),
     				FabricEntityTypeBuilder.create(EntityCategory.AMBIENT, MandrakeEntity::new).size(EntityDimensions.fixed(0.3f, 0.7f)).build()
     				);
-    public static final EntityType<WebBrewEntity>
-    WEB_REW_ENTITY = Registry.register(Registry.ENTITY_TYPE, new Identifier("walpurgisnacht", "splash_potion"),
-    	    FabricEntityTypeBuilder.create(EntityCategory.MISC, WebBrewEntity::new).build());
 
     public static final Tag<Block> MUATION_TABLE_TAG = TagRegistry.block(new Identifier("walpurgisnacht", "mutation_table"));
     
@@ -76,22 +70,21 @@ public class WitchesSabbath implements ModInitializer {
     public static final AlteringLiquidItem MUTANDIS_COPYKAT = new AlteringLiquidItem(new Item.Settings().group(WITCHES_SABBATH));
 
     public static final Item MANDRAKE_SEEDS = new Item(new Item.Settings().group(WITCHES_SABBATH));
-    public static final WebBrewItem WEB_BREW = new WebBrewItem(new Item.Settings().group(WITCHES_SABBATH));
 
     public static final SilverSwordItem SILVER_SWORD = new SilverSwordItem(ToolMaterials.IRON, 3, -2.8f);
+    public static final Item HUNTER_CROSSBOW = new HunterCrossbowItem();
     
-    public static final LogBlock ROWAN_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
-    public static final AlderTreeLog ALDER_TREE_LOG = new AlderTreeLog(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
-    public static final LogBlock ALDER_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
-    
+    public static final Block ROWAN_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
+    public static final Block ALDER_TREE_LOG = new AlderTreeLog(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
+    public static final Block ALDER_LOG = new LogBlock(MaterialColor.WOOD, FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
     public static final Block ROWAN_PLANKS = new Block(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
 
-    public static final FenceBlock ROWAN_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
+    public static final Block ROWAN_FENCE = new FenceBlock(FabricBlockSettings.of(Material.WOOD).strength(2.0f, 2.0f).sounds(BlockSoundGroup.WOOD).build());
     
 	public static final Block ALDER_SAPLING = new MagicSaplingBlock(new MagicSaplingGenerator(() -> new AlderTreeFeature(DefaultFeatureConfig::deserialize, true))); 
     public static final Block ROWAN_SAPLING = new MagicSaplingBlock(new MagicSaplingGenerator(() -> new RowanTreeFeature(DefaultFeatureConfig::deserialize, true))); 
-    public static final LeavesBlock ALDER_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
-    public static final LeavesBlock ROWAN_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
+    public static final Block ALDER_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
+    public static final Block ROWAN_LEAVES = new LeavesBlock(FabricBlockSettings.of(Material.LEAVES).strength(0.25f, 0.25f).sounds(BlockSoundGroup.GRASS).build());
     
     public static final MandrakeRootsBlock MANDRAKE_ROOTS = new MandrakeRootsBlock();
     
@@ -110,7 +103,8 @@ public class WitchesSabbath implements ModInitializer {
     public static SoundEvent WOSE_HIT = new SoundEvent(WALPURGISNACHT_SOUND_3);   
     public static final Identifier 	WALPURGISNACHT_SOUND_4 = new Identifier("walpurgisnacht:wose_idle");
     public static SoundEvent WOSE_IDLE = new SoundEvent(WALPURGISNACHT_SOUND_4);
-        
+
+
 	@Override
 	public void onInitialize() {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
@@ -121,7 +115,8 @@ public class WitchesSabbath implements ModInitializer {
         WITCHES_CAULDRON_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY, "walpurgisnacht:witchescauldron", BlockEntityType.Builder.create(WitchesCauldronBlockEntity::new, WITCHES_CAULDRON).build(null));        
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mandrake_root"), MANDRAKE_ROOT);
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "silver_sword"), SILVER_SWORD);
-        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "web_brew"), WEB_BREW);	
+        Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "hunter_crossbow"), HUNTER_CROSSBOW);
+
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "rowan_berries"), ROWAN_BERRIES);	
 
         Registry.register(Registry.ITEM, new Identifier("walpurgisnacht", "mutandis_copykat"), MUTANDIS_COPYKAT);	

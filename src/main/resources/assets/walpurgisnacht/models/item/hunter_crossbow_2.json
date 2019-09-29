@@ -1,0 +1,6 @@
+{
+    "parent": "walpurgisnacht:item/hunter_crossbow",
+    "textures": {
+        "layer0": "walpurgisnacht:item/hunter_crossbow_2"
+    }
+}
